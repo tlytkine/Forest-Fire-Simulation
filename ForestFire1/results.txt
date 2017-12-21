@@ -1,0 +1,152 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red34\green255\blue13;\red0\green0\blue160;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww13320\viewh14500\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\b\fs24 \cf2 \expnd0\expndtw0\kerning0
+\ul \ulc2 Results:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\b0\fs22 \cf0 \cb3 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 Timothys-MacBook-Pro:SEAssignment1 timothylytkine$ javac Assign1.java\
+Timothys-MacBook-Pro:SEAssignment1 timothylytkine$ java Assign1\
+BEFORE: \
+1 2 2 0 2 \
+2 1 2 2 1 \
+2 2 1 2 1 \
+2 2 2 2 0 \
+0 0 0 0 0 \
+\
+AFTER: \
+X X X 0 2 \
+2 X X X X \
+2 2 1 X 1 \
+2 2 X 2 0 \
+0 0 0 0 0 \
+\
+Number of type-1 trees burned: 3\
+Number of type-2 trees burned: 6\
+Number of type-1 clusters: 5\
+\
+Average number of type 1 clusters: 5.911\
+Average number of type 1 trees burned: 3.976\
+Average number of type 2 trees burned: 5.824\
+\
+M=4, and each value of fillDensity in the set \{0.1, 0.3, 0.5, 0.7, 0.9\}.\
+Average number of type 1 trees burned: 49.838\
+Average number of type 2 trees burned: 49.942\
+\
+M=8, and each value of fillDensity in the set \{0.1, 0.3, 0.5, 0.7, 0.9\}.\
+Average number of type 1 trees burned: 100.164\
+Average number of type 2 trees burned: 100.109\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\b\fs24 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\ul \ulc2 \CocoaLigature1 \
+What I did to ensure that my code was working correctly:\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\b0 \cf2 \ulnone \
+There was a lot of trial and error involved and making all of the code work properly so in this process I tested each method for a variety of \
+values, there were compiler errors a lot of the time but I kept editing the code and fixing these errors until it worked. As you can see above in the results, all the code is perfectly functional as it should be. 
+\b \ul \
+\
+Evidence that I thought about the design before I started coding:\
+Tree Class:
+\b0 \ulnone \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+\cf2 The Tree class will hold the type of tree and the state of each tree. This will be determined with the value used to initialize the Tree taken. 1 will create a tree of type1 and 2 will create a tree of type2 and 0 will create a tree of either type with all the states set to false. The states will be boolean variables that will be updated after the tree is initialized and after either of two methods update and ignite are called. Depending on the type of tree that is created the boolean variables and the status of the tree will be updated differently to account for a type1 tree taking 1 step to burn down and a type2 tree taking 2 steps to burn down.\
+These three boolean variables will be called burning, standing and stump.\
+Burning will be true after the ignite method is called, standing will be true after initialization, and stump will be true after the update method is called.\
+When status = 0\
+Type1 trees: standing = false, burning = false, stump = false\
+Type2 trees: standing = false, burning = false, stump = false\
+\
+When status = 1\
+Type1 trees: standing = true, burning = false, stump = false\
+Type2 trees: standing = true, burning = true, stump = false\
+\
+When status = 2\
+Type1 trees: standing = false, burning = true, stump = false\
+Type2 trees: standing = true, burning = false, stump = false\
+\
+When status = 3 \
+Type1 trees: standing = false, burning = false, stump = true\
+Type2 trees: standing = false, burning = false, stump = true\
+\
+\ul Methods in Tree Class: \ulnone (Tree class is for trees of type1, Tree2 class is a subclass of the Tree class and is for trees of Type2)\
+1.Constructor that initializes values of status and three boolean variables (burning, standing and stump)\
+2.ignite() method that changes the values of status and the boolean variables\
+3.update() method that changes the values of status and the boolean variables\
+4.toString() method (not done yet)\ul \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\b \cf2 \ulnone \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \
+\ul Cell Class:
+\b0 \ulnone \
+The Cell class will hold information about a particular cell.\
+It will hold one integer value that denotes whether there is a tree or not.\
+A 0 indicates that there is no tree and 1 or 2 indicates that there is a tree.\
+It will have a 1 parameter constructor that holds this integer value.\
+It will also create a Tree that will hold the information from the Cell as well and whose methods will be used to update the information about the cell.\
+\
+\ul Methods in Cell Class: \
+\ulnone 1.Constructor that initializes value of state and creates and initializes new Tree with that value\
+2.ignite() method that calls on the ignite method of the Tree instance\
+3.update() method that calls on the update method of the Tree instance \
+4.toString() method (not done yet)\
+\pard\pardeftab720\sl280\qj\partightenfactor0
+\cf2 \
+
+\b \ul Landscape Class:
+\b0 \ulnone \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 The Landscape class will hold an (MxM) 2D array of objects of the Cell class.\
+\pard\tx509\pardeftab720\sl280\partightenfactor0
+\cf2 \
+\
+
+\b \ul Methods:\ulnone \
+
+\b0 1.2 parameter constructor:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 2.simulateForestFire() method that will change the value of the tree object in a particular spot in the 2D array \
+3.getNumTreesBurned() method that will look through array of Cells and count the number of trees burned with a for loop that increments each time stump is true and then return the number of trees burned. <- once simulation is complete, should return the number of trees burned\
+3.getNumClusters()\
+4.toString() method (not done yet) -> this writes out a snapshot of the landscape \
+(3 is equivalent to X) \
+^^ System.out.println (L); should print current snapshot of landscape\
+\
+\
+\
+Left with stumps of clusters\
+Clusters collection of trees, such that any two trees in the cluster are connected to each other via a string of neighboring trees\
+If any tree in a cluster is ignited, the entire cluster will eventually burn\
+\
+Type1 trees, if any neighboring tree catches fire, they catch fire\
+Type2 trees, 2 neighboring trees must be on fire simultaneously for a type2 tree to catch fire \
+\
+Goal of project:\
+-Identify all type1 clusters\
+-Consider the effects of a controlled burn on both types\
+-simulation will run until all trees that get ignited completely burn, (tree status = 3)\
+^ this can be done by running the simulation until the number of trees ignited = the number of trees burned\
+\
+
+\b \
+\
+\
+\
+
+\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 \
+\pard\tx720\pardeftab720\sl280\partightenfactor0
+\cf2 \
+}
